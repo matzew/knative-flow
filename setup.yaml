@@ -1,31 +1,31 @@
-# apiVersion: serving.knative.dev/v1alpha1
-# kind: Service
-# metadata:
-#   name: dumpy
-#   namespace: myproject
-# spec:
-#   runLatest:
-#     configuration:
-#       revisionTemplate:
-#         spec:
-#           container:
-#             imagePullPolicy: IfNotPresent
-#             image: docker.io/matzew/openshift-message-dumper
-# ---
-# apiVersion: serving.knative.dev/v1alpha1
-# kind: Service
-# metadata:
-#   name: reply 
-#   namespace: myproject
-# spec:
-#   runLatest:
-#     configuration:
-#       revisionTemplate:
-#         spec:
-#           container:
-#             imagePullPolicy: IfNotPresent
-#             image: docker.io/matzew/vertx-reply
-# ---
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: dumpy
+  namespace: myproject
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            imagePullPolicy: IfNotPresent
+            image: docker.io/matzew/openshift-message-dumper
+---
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: reply 
+  namespace: myproject
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            imagePullPolicy: IfNotPresent
+            image: docker.io/matzew/vertx-reply
+---
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Channel
 metadata:
