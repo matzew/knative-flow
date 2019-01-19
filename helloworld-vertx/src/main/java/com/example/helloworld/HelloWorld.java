@@ -18,8 +18,7 @@ public class HelloWorld extends AbstractVerticle {
                                         .putHeader(HttpHeaders.CONTENT_LENGTH, HttpHeaders.createOptimized(String.valueOf(receivedEvent.toString().length())))
                                         .putHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.createOptimized("text/plain"))
                                         .setStatusCode(200)
-                                        //.end(receivedEvent.toString());
-                                        .end("{\"returned\":\"VERTX\"}");
+                                        .end(receivedEvent.toString());
                             } else {
                                 String target = System.getenv("TARGET");
                                 if (target == null) {
