@@ -24,7 +24,7 @@ spec:
         spec:
           container:
             imagePullPolicy: IfNotPresent
-            image: docker.io/matzew/vertx-reply
+            image: docker.io/matzew/vertx-multiplyer
 ---
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Channel
