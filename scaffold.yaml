@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: dumpy
+  name: data-sink 
   namespace: myproject
 spec:
   runLatest:
@@ -10,7 +10,7 @@ spec:
         spec:
           container:
             imagePullPolicy: IfNotPresent
-            image: docker.io/matzew/openshift-message-dumper
+            image: docker.io/matzew/data-sink
 ---
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
