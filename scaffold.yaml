@@ -15,7 +15,7 @@ spec:
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: reply 
+  name: data-processor 
   namespace: myproject
 spec:
   runLatest:
@@ -24,7 +24,10 @@ spec:
         spec:
           container:
             imagePullPolicy: IfNotPresent
-            image: docker.io/matzew/vertx-multiplyer
+            image: docker.io/matzew/data-processor
+            env:
+            - name: CEF_MULTIPL
+              value: "42"
 ---
 apiVersion: eventing.knative.dev/v1alpha1
 kind: Channel
