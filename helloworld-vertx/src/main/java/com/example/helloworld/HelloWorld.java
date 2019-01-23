@@ -12,23 +12,23 @@ public class HelloWorld extends AbstractVerticle {
                 .requestHandler(req -> VertxCloudEvents.create().rxReadFromRequest(req)
                         .subscribe((receivedEvent, throwable) -> {
                             if (receivedEvent != null) {
-                                System.out.println(receivedEvent.toString());
                                 // I got a cloud Event: Echo that
+
+                                final Double val = Double.parseDouble(receivedEvent.getData().get().toString());
+
+                                final Double ret = val * 2;
+
                                 req.response()
-                                        .putHeader(HttpHeaders.CONTENT_LENGTH, HttpHeaders.createOptimized(String.valueOf(receivedEvent.toString().length())))
+                                        .putHeader(HttpHeaders.CONTENT_LENGTH, HttpHeaders.createOptimized(String.valueOf(ret.toString().length())))
                                         .putHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.createOptimized("text/plain"))
                                         .setStatusCode(200)
-                                        .end(receivedEvent.toString());
+                                        .end(ret.toString());
                             } else {
-                                String target = System.getenv("TARGET");
-                                if (target == null) {
-                                    target = "NOT SPECIFIED";
-                                }
                                 req.response()
                                         .setChunked(true)
                                         .putHeader(HttpHeaders.CONTENT_TYPE, HttpHeaders.createOptimized("text/plain"))
-                                        .setStatusCode(200)
-                                        .end("Hello World: " + target);
+                                        .setStatusCode(500)
+                                        .end("nope");
                             }
                         }))
                 .rxListen(8080)

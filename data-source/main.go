@@ -41,7 +41,7 @@ var (
 
 func init() {
 	flag.StringVar(&sink, "sink", "", "the host url to heartbeat to")
-	flag.StringVar(&periodStr, "period", "400", "the number of milliseconds between heartbeats")
+	flag.StringVar(&periodStr, "period", "1000", "the number of milliseconds between heartbeats")
 }
 
 func main() {
