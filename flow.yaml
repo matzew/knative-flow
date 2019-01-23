@@ -44,7 +44,7 @@ spec:
     ref:
       apiVersion: serving.knative.dev/v1alpha1
       kind: Service
-      name: dumpy
+      name: data-sink
 
 
 
