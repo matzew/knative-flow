@@ -5,18 +5,17 @@ metadata:
 spec:
   image: docker.io/matzew/data-src
   sink:
-    apiVersion: eventing.knative.dev/v1alpha1
+    apiVersion: messaging.knative.dev/v1alpha1
     kind: Channel
     name: inputchannel
 ---
-apiVersion: eventing.knative.dev/v1alpha1
+apiVersion: messaging.knative.dev/v1alpha1
 kind: Subscription
 metadata:
   name: read-subscription
-  namespace: myproject
 spec:
   channel:
-    apiVersion: eventing.knative.dev/v1alpha1
+    apiVersion: messaging.knative.dev/v1alpha1
     kind: Channel
     name: inputchannel
   subscriber:
@@ -26,18 +25,17 @@ spec:
       name: data-processor
   reply:
     channel:
-      apiVersion: eventing.knative.dev/v1alpha1
+      apiVersion: messaging.knative.dev/v1alpha1
       kind: Channel
       name: replychannel
 ---
-apiVersion: eventing.knative.dev/v1alpha1
+apiVersion: messaging.knative.dev/v1alpha1
 kind: Subscription
 metadata:
   name: reply-subscription
-  namespace: myproject
 spec:
   channel:
-    apiVersion: eventing.knative.dev/v1alpha1
+    apiVersion: messaging.knative.dev/v1alpha1
     kind: Channel
     name: replychannel
   subscriber:

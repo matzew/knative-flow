@@ -2,7 +2,6 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
   name: data-sink 
-  namespace: myproject
 spec:
   runLatest:
     configuration:
@@ -16,7 +15,6 @@ apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
   name: data-processor 
-  namespace: myproject
 spec:
   runLatest:
     configuration:
@@ -29,22 +27,12 @@ spec:
             - name: CEF_MULTIPL
               value: "42"
 ---
-apiVersion: eventing.knative.dev/v1alpha1
+apiVersion: messaging.knative.dev/v1alpha1
 kind: Channel
 metadata:
   name: inputchannel
-spec:
-  provisioner:
-    apiVersion: eventing.knative.dev/v1alpha1
-    kind: ClusterChannelProvisioner
-    name: in-memory-channel
 ---
-apiVersion: eventing.knative.dev/v1alpha1
+apiVersion: messaging.knative.dev/v1alpha1
 kind: Channel
 metadata:
   name: replychannel
-spec:
-  provisioner:
-    apiVersion: eventing.knative.dev/v1alpha1
-    kind: ClusterChannelProvisioner
-    name: in-memory-channel
